@@ -5,7 +5,6 @@ Interactive projects that demonstrate **Reinforcement Learning (Q-Learning)** co
 These projects focus on learning by visual feedback, where an AI agent improves its decisions over time based on rewards.
 
 ---
-
 ## 🚀 Projects Included
 
 ### Project 1
