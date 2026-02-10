@@ -1,0 +1,242 @@
+:root {
+    --bg-color: #0b0c15;
+    --panel-bg: #151621;
+    --accent-blue: #00f3ff;
+    --accent-pink: #ff00ff;
+    --accent-green: #00ff66;
+    --text-color: #e0e0e0;
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-container {
+    width: 95%; /* Use percentage to fit */
+    max-width: 1200px;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px var(--accent-blue);
+    margin-bottom: 5px;
+}
+
+.highlight {
+    color: var(--accent-pink);
+    text-shadow: 0 0 10px var(--accent-pink);
+}
+
+.subtitle {
+    color: #888;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    flex: 1;
+    min-height: 0; /* Important for grid overflow */
+}
+
+/* Game Area */
+.game-area {
+    background: var(--panel-bg);
+    border: 2px solid #333;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(11, 12, 21, 0.85);
+    padding: 20px 40px;
+    border: 1px solid var(--accent-blue);
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.visible {
+    opacity: 1;
+}
+
+.overlay h2 {
+    font-family: var(--font-heading);
+    color: var(--accent-green);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* Controls Area */
+.controls-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stats-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    background: var(--panel-bg);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-box .label {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.stat-box .value {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--accent-blue);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.shoot-btn {
+    flex: 1;
+    background: transparent;
+    border: 2px solid var(--accent-blue);
+    color: var(--accent-blue);
+    padding: 15px;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.shoot-btn:hover {
+    background: var(--accent-blue);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px var(--accent-blue);
+}
+
+.shoot-btn:active {
+    transform: scale(0.95);
+}
+
+/* RL Monitor */
+.rl-monitor {
+    background: var(--panel-bg);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.rl-monitor h3 {
+    font-family: var(--font-heading);
+    color: var(--accent-pink);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.q-table-viz {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 5px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.q-header {
+    font-weight: bold;
+    color: #aaa;
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid #444;
+}
+
+.q-row-label {
+    font-weight: bold;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+}
+
+.q-cell {
+    background: #0f1018;
+    padding: 8px;
+    text-align: center;
+    border-radius: 4px;
+    font-family: monospace;
+    transition: background-color 0.3s;
+}
+
+.rl-info p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rl-info span {
+    font-family: monospace;
+    color: var(--accent-green);
+}

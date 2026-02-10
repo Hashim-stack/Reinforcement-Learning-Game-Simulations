@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Striker: RL Penalty Shootout</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>NEON <span class="highlight">STRIKER</span></h1>
+            <p class="subtitle">Reinforcement Learning Edition</p>
+        </header>
+
+        <div class="main-layout">
+            <div class="game-area">
+                <canvas id="gameCanvas" width="800" height="600"></canvas>
+                <div class="overlay" id="messageOverlay">
+                    <h2 id="roundResult">Ready?</h2>
+                    <p>Select a direction to shoot</p>
+                </div>
+            </div>
+
+            <div class="controls-area">
+                <div class="stats-panel">
+                    <div class="stat-box">
+                        <span class="label">Score</span>
+                        <span class="value" id="scoreDisplay">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="label">Episode</span>
+                        <span class="value" id="episodeDisplay">1</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="label">Save Rate</span>
+                        <span class="value" id="saveRateDisplay">0%</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="btnLeft" class="shoot-btn" data-dir="left">
+                        <span class="icon">Thinking... </span> LEFT
+                    </button> <!-- Added dummy content for layout width -->
+                    <button id="btnCenter" class="shoot-btn" data-dir="center">
+                        CENTER
+                    </button>
+                    <button id="btnRight" class="shoot-btn" data-dir="right">
+                        RIGHT
+                    </button>
+                </div>
+
+                <div class="rl-monitor">
+                    <h3>AI Brain (Q-Table)</h3>
+                    <div class="q-table-viz" id="qTableViz">
+                        <!-- Populated by JS -->
+                        <div class="q-header">State \ Action</div>
+                        <div class="q-header">Dive Left</div>
+                        <div class="q-header">Dive Center</div>
+                        <div class="q-header">Dive Right</div>
+                        
+                        <!-- Example Row (Will be dynamic) -->
+                        <div class="q-row-label">Last: Left</div>
+                        <div class="q-cell" id="q-L-L">0.00</div>
+                        <div class="q-cell" id="q-L-C">0.00</div>
+                        <div class="q-cell" id="q-L-R">0.00</div>
+
+                        <div class="q-row-label">Last: Center</div>
+                        <div class="q-cell" id="q-C-L">0.00</div>
+                        <div class="q-cell" id="q-C-C">0.00</div>
+                        <div class="q-cell" id="q-C-R">0.00</div>
+
+                        <div class="q-row-label">Last: Right</div>
+                        <div class="q-cell" id="q-R-L">0.00</div>
+                        <div class="q-cell" id="q-R-C">0.00</div>
+                        <div class="q-cell" id="q-R-R">0.00</div>
+                    </div>
+                    <div class="rl-info">
+                        <p>State: <span id="currentStateDisplay">None</span></p>
+                        <p>Last Reward: <span id="lastRewardDisplay">0</span></p>
+                        <p>Epsilon (Exploration): <span id="epsilonDisplay">0.1</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
